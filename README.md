@@ -13,7 +13,7 @@
 
 * [Rename the extension](#rename-the-extension)
 * [Bypass the extension checks](#bypass-the-entension-checks)
-* [Bypass using the content-type](#bypass-using-the-content---type)
+* [Bypass using the content-type](#bypass-using-the-content-type)
 * [Magic number](#magic-number)
 
 
