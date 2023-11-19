@@ -200,7 +200,7 @@ file.pHp%00.pNg%00.jPg
 
 #### ➤ 1. Initial request (upload of php reverse shell)
 
-![image](https://github.com/Kiosec/Shells/assets/100965892/3aee2465-5e3d-4e45-b500-5066a61ea8dd)
+![image](https://github.com/Kiosec/Shells/assets/100965892/609150ce-69ac-4769-99cf-155e9d78eeae)
 
 
 #### ➤ 2. Burp interception and modification 
