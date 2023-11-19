@@ -198,6 +198,10 @@ file.pHp%00.pNg%00.jPg
 
 ## 🔻Bypass using the content-type
 
+Example of content-type :
+- image/jpeg
+- application/pdf
+
 #### ➤ 1. Initial request (upload of php reverse shell)
 
 ![image](https://github.com/Kiosec/Shells/assets/100965892/609150ce-69ac-4769-99cf-155e9d78eeae)
