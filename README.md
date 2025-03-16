@@ -287,7 +287,14 @@ user@box:~$ ^C
 user@box:~$
 ```
 
-## 🔻Technique 02: Rlwrap
+## 🔻Technique 02: Script
+```
+$ script /dev/null -c bash
+Script started, output log file is '/dev/null'.
+kiosec@mycyberlab:/home/kiosec$
+```
+
+## 🔻Technique 03: Rlwrap
 rlwrap gives a more fully featured shell including access to history, tab autocompletion and the arrow keys immediately upon receiving a shell.
 This technique is particularly useful with the Windows shell.
 
