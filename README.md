@@ -20,7 +20,8 @@
 ##### ➤ Shell Stabilisation
 
 * [Technique 01: Python](#technique-01-python)
-* [Technique 02: Rlwrap](#technique-02-rlwrap)
+* [Technique 02: Script](#technique-02-script)
+* [Technique 03: Rlwrap](#technique-02-rlwrap)
 * [Technique 03: Socat](#technique-03-socat)
 
 
