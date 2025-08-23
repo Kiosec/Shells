@@ -15,15 +15,15 @@
 * [Bypass the extension checks](#bypass-the-entension-checks)
 * [Bypass using the content-type](#bypass-using-the-content-type)
 * [Magic number](#magic-number)
-* [Bypass using .htaccess](#bypass-using-.htaccess)
+* [Bypass using .htaccess](#bypass-using-htaccess)
 
 
 ##### ➤ Shell Stabilisation
 
 * [Technique 01: Python](#technique-01-python)
 * [Technique 02: Script](#technique-02-script)
-* [Technique 03: Rlwrap](#technique-02-rlwrap)
-* [Technique 04: Socat](#technique-03-socat)
+* [Technique 03: Rlwrap](#technique-03-rlwrap)
+* [Technique 04: Socat](#technique-04-socat)
 
 
 
