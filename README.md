@@ -348,7 +348,7 @@ CRTL+Z
 stty raw -echo; fg
 ```
 
-## 🔻Technique 03: Socat
+## 🔻Technique 04: Socat
 Restricted to Linux target
 
 ```
