@@ -145,7 +145,7 @@ https://weibell.github.io/reverse-shell-generator/
 
 ## 🔻Rename the extension 
 ```
-• PHP: .php, .php2, .php3, .php4, .php5, .php6, .php7, .phps, .phps, .pht, .phtm, .phtml, .pgif, .shtml, .htaccess, .phar, .inc, .hphp, .ctp, .module
+• PHP: .php, .php2, .php3, .php4, .php5, .php6, .php7, .php16, .phps, .pht, .phtm, .phtml, .pgif, .shtml, .htaccess, .phar, .inc, .hphp, .ctp, .module
 
 • PHP8: .php, .php4, .php5, .phtml, .module, .inc, .hphp, .ctp
 
